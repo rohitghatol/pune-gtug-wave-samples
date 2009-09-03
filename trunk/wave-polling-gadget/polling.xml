@@ -10,6 +10,27 @@
   <script type="text/javascript"
       src="http://wave-api.appspot.com/public/wave.js"></script>
   <script type="text/javascript">
+  // adding it as a prototype object enables it to be used from any array
+	Array.prototype.removeItems = function(itemsToRemove) {
+	
+	    if (!/Array/.test(itemsToRemove.constructor)) {
+	        itemsToRemove = [ itemsToRemove ];
+	    }
+	
+	    var j;
+	    for (var i = 0; i < itemsToRemove.length; i++) {
+	        j = 0;
+	        while (j < this.length) {
+	            if (this[j] == itemsToRemove[i]) {
+	                this.splice(j, 1);
+	            } else {
+	                j++;
+	            }
+	        }
+	    }
+	}
+  </script>
+  <script type="text/javascript">
     var DEBUG=true;
 	var TITLE="title";
 	
@@ -97,12 +118,30 @@
 	  }
     }
     function addVote(option){
-      alert("add vote for "+option);
+      var optionValue = getValidOptionValue(option);
+      if(optionValue!=null){
+         optionValue.count++;
+         optionValue.participants.push(viewer.getViewer().getId());
+         var state = wave.getState();
+	     var delta = { };
+	     delta[option] = JSON.stringify(optionValue);
+         wave.getState().submitDelta(delta);
+      }
       gadgets.window.adjustHeight();
     
     }
     
     function removeVote(option){
+      var optionValue = getValidOptionValue(option);
+      if(optionValue!=null){
+         optionValue.count--;
+         optionValue.participants.removeItems(viewer.getViewer().getId());
+         var state = wave.getState();
+	     var delta = { };
+	     delta[option] = JSON.stringify(optionValue);
+         wave.getState().submitDelta(delta);
+      }
+      gadgets.window.adjustHeight();
     
     }
       
