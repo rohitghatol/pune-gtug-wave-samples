@@ -60,6 +60,7 @@
 	      delta[option] = data;
 	      
 	      wave.getState().submitDelta(delta);
+	      wave.getState().submitDelta({"dummy1","111"});
 	  }
       gadgets.window.adjustHeight();
     }
