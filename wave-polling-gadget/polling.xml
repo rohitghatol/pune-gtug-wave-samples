@@ -118,10 +118,9 @@
 	  }
     }
     function addVote(option){
-      log("addVote "+option);
       var optionValue = getValidOptionValue(option);
-      log("addVote "+optionValue);
       if(optionValue!=null){
+         log(JSON.stringify(optionValue));
          optionValue.count++;
          optionValue.participants.push(viewer.getViewer().getId());
          var state = wave.getState();
