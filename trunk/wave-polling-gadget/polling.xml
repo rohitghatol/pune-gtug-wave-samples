@@ -24,7 +24,9 @@
          renderPollResult();
    
        }catch(e){
-       	   alert("Error="+e);
+       	   for(var i in e){
+       	     alert(i+"="+e[i]);
+       	   }
        }
        gadgets.window.adjustHeight();
        
