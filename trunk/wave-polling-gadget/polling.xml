@@ -34,17 +34,21 @@
     
     
     function setPollTitle(id){
-
       var title = value(id);
       var state = wave.getState();
-
       var delta = {"title":title};
       wave.getState().submitDelta(delta);
-      log("submitted");
+
       
     }
     function addOption(option){
-      //TODO add Option on behalf of the viewer
+      var option = value(id);
+      log("option="+option);
+      var state = wave.getState();
+      var delta = {option:{count:1,participants:[wave.getViewer().getId()]};
+      log("state="+state);
+      wave.getState().submitDelta(delta);
+
     }
 
     function log(text){
@@ -89,7 +93,6 @@
      * when ever a state is changed or a participant added
      */
     function init() {
-      log("started in init");
       if (wave && wave.isInWaveContainer()) {
         wave.setStateCallback(renderInfo);
         wave.setParticipantCallback(renderInfo);
@@ -120,7 +123,7 @@
        <tr>
          <td>Add Option:</td>
          <td><input id="addOptionInput" type="text" value=""></input></td>
-         <td><button id="addOptionSubmit" name="addOption" value="addOption" onClick="addOption(id('titleInput'))">Set</button></td>
+         <td><button id="addOptionSubmit" name="addOption" value="addOption" onClick="addOption('addOptionInput')">Set</button></td>
        </tr>
       </table>
   </div>
