@@ -34,39 +34,32 @@
     
     
     function setPollTitle(id){
-      //TODO Set value in state
       var title = value(id);
       if(title==null){
         alert("Please enter a Title for the polls?");
       }
       else{
 	      var state = wave.getState();
-	      log("state="+state);
-	      var delta = {"title":title};
-	      log("delta="+delta);
+	      var delta = {};
+	      delta[TITLE]=title;
 	      wave.getState().submitDelta(delta);
-	      log("submitted");
 	  }
       gadgets.window.adjustHeight();
       
     }
     function addOption(id){
-      log("id="+id);
       var option = value(id);
-      log("option="+option);
       if(option==null){
         alert("Please enter an Option for the polls?");
       }
       else{
 	      var state = wave.getState();
 	      var data = {"count":1,"participants":[wave.getViewer().getId()]};
-	      alert(option);
-	      var delta = { option : data };
-	      for(var i in delta){
-	        alert(i+" "+delta[i]);
-	      }
+	      var delta = { };
+	      delta[option] = data;
 	      log("state="+state);
 	      wave.getState().submitDelta(delta);
+	      log("submitted");
 	  }
       gadgets.window.adjustHeight();
     }
