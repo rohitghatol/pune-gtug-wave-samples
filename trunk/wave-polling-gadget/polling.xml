@@ -57,7 +57,7 @@
 	      log(state.toString());
 	      var data = {"count":1,"participants":[wave.getViewer().getId()]};
 	      var delta = { };
-	      delta[option] = data;
+	      delta[option] = "as";
 	      
 	      wave.getState().submitDelta(delta);
 	      wave.getState().submitDelta({"dummy1":"111"});
