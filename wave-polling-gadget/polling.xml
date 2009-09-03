@@ -53,12 +53,12 @@
               var obj=getValidOptionValue(key);
 	          var button = "";
 	          if( obj.participants.indexOf( wave.getViewer().getId() )>0 ){
-	            button="<button id='"+key+"' onClick='removeVote("+key+")'>-</button>";
+	            button="<button id='"+key+"' onClick='removeVote(\""+key+"\")'>-</button>";
 	            
 	          }
 	          else{
-	            button="<button id='"+key+"' onClick='addVote("+key+")'>+</button>";
-	            alert(button);
+	            button="<button id='"+key+"' onClick='addVote(\""+key+"\")'>+</button>";
+	            
 	          }
 	          contents=contents+"<tr><td>"+key+"</td><td> Polls="+obj.count+"</td><td>"+button+"</td></tr>";
           }
