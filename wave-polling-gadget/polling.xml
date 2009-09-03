@@ -63,7 +63,6 @@
          } 
     }
     function renderPollResult(){
-      log("inside renderPollResult");
       var state = wave.getState();
       var keys = state.getKeys();
       var pollTable = elem("pollResults");
@@ -231,7 +230,7 @@
     
     
   </script>
-  <div id="log" style="border:1px dotted red">
+  <div id="log" style="border:1px dotted red;display:none">
   </div>
   <div id="participant">
      <h1 id="title"></h1>
