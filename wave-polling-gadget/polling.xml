@@ -23,7 +23,7 @@
            text(TITLE,"Not set yet");
          }
          else {
-           text(TITLE,wave.get(TITLE));
+           text(TITLE,state.get(TITLE));
          } 
    
        }catch(e){
@@ -34,12 +34,11 @@
     
     
     function setPollTitle(id){
-      //TODO Set value in state
+
       var title = value(id);
       var state = wave.getState();
-      log("state="+state);
+
       var delta = {"title":title};
-      log("delta="+delta);
       wave.getState().submitDelta(delta);
       log("submitted");
       
