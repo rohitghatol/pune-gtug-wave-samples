@@ -45,6 +45,9 @@
       var keys = state.getKeys();
       var pollTable = elem("pollResults");
       var contents="";
+      alert(keys);
+      alert(keys.length);
+      alert(keys[0]);
       for(var key in keys){
           var keyStr = keys[keyStr];
           var value = state.get(keyStr);
