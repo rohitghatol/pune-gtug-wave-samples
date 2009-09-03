@@ -33,11 +33,17 @@
     }
     
     
-    function setPollTitle(title){
+    function setPollTitle(id){
       //TODO Set value in state
+      log("inside setPollTitle");
+      log(id);
+      var title = value(id);
+      log(value);
       var state = wave.getState();
       log(state);
-      state.submitDelta({TITLE:title});
+      var detla = {TITLE:title};
+      log(delta);
+      state.submitDelta(delta);
       
     }
     function addOption(option){
@@ -101,7 +107,7 @@
        <tr>
          <td>Enter Polling Title :</td>
          <td><input id="titleInput" type="text" value=""></input></td>
-         <td><button id="titleSubmit" name="Set" value="Set" onClick="alert(value('titleInput');setPollTitle(value('titleInput'))">Set</button></td>
+         <td><button id="titleSubmit" name="Set" value="Set" onClick="setPollTitle('titleInput')">Set</button></td>
        </tr>
       </table>
   </div>
