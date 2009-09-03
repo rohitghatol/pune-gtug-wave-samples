@@ -54,19 +54,13 @@
       }
       else{
 	      var state = wave.getState();
+	      for(var i in state){
+	        alert(i+"="+state[i]);
+	      }
 	      var data = {"count":1,"participants":[wave.getViewer().getId()]};
 	      var delta = { };
 	      delta[option] = data;
-	      for(var i in delta){
-	        alert(i+"="+delta[i]);
-	        for(var j in delta[i]){
-	          alert("   "+j+"="+delta[i][j]);
-	        }
-	      }
-	      
-	      log("state="+state);
 	      wave.getState().submitDelta(delta);
-	      log("submitted");
 	  }
       gadgets.window.adjustHeight();
     }
