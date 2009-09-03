@@ -60,6 +60,9 @@
       else{
 	      var state = wave.getState();
 	      var delta = {option:{count:1,participants:[wave.getViewer().getId()]}};
+	      for(var i in delta){
+	        alert(i+" "+delta[i]);
+	      }
 	      log("state="+state);
 	      wave.getState().submitDelta(delta);
 	  }
