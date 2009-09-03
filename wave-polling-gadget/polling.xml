@@ -27,7 +27,7 @@
        	   alert(e);
        }
        gadgets.window.adjustHeight();
-       log("renderInfo done");
+       
     }
     
     function renderTitle(){
@@ -46,10 +46,12 @@
       var contents="";
       for(var key in keys){
           var value = state.get(key);
-          alert("value="+value);
-          var obj = JSON.parse(value);
-          if(obj.count!=null){
-             contents=contents+"<tr><td>"+key+"</td><td>place holder for bar</td><td><button id='"+key+"'>+</button></td></tr>";
+          if(value!=null){
+	          alert("value="+value);
+	          var obj = JSON.parse(value);
+	          if(obj.count!=null){
+	             contents=contents+"<tr><td>"+key+"</td><td>place holder for bar</td><td><button id='"+key+"'>+</button></td></tr>";
+	          }
           }
       }
       pollTable.innerHTML=contents;
@@ -75,7 +77,6 @@
       }
       else{
 	      var state = wave.getState();
-	      log(state.toString());
 	      var data = {"count":0,"participants":[]};
 	      var delta = { };
 	      delta[option] = JSON.stringify(data);
@@ -129,7 +130,6 @@
      * when ever a state is changed or a participant added
      */
     function init() {
-      log("started in init");
       if (wave && wave.isInWaveContainer()) {
         wave.setStateCallback(renderInfo);
         wave.setParticipantCallback(renderInfo);
