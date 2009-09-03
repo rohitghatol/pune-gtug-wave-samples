@@ -36,6 +36,7 @@
     function setTitle(title){
       //TODO Set value in state
       var state = wave.getState();
+      log(state);
       state.submitDelta({TITLE:title});
       
     }
@@ -67,13 +68,8 @@
     function setup(){
 	  hide("owner");      
       hide("participant");
-      log("host = "+wave.getHost());
-      log("host Id= "+wave.getHost().getId());
-      log("viewer = "+wave.getViewer());
-      log("viewer Id= "+wave.getViewer().getId());
       if(wave.getViewer().getId()==wave.getHost().getId()){
          show("owner");
-
       }
       else{
          show("participant");
