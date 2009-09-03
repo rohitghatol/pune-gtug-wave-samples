@@ -65,6 +65,7 @@
     }  
     
     function getValidOptionValue(key){
+      var state = wave.getState();
       var value = state.get(key);
       if(value!=null){
     	var validObject=true;
@@ -76,7 +77,7 @@
 	      }
 	    }
 	    catch(e){
-	    validObject=false;
+	      validObject=false;
 	    }
 	  }
 	  else{
