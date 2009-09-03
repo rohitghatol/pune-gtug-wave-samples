@@ -41,6 +41,7 @@
       var delta = {"title":title};
       log("delta="+delta);
       wave.getState().submitDelta(delta);
+      log("submitted");
       
     }
     function addOption(option){
