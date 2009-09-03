@@ -3,7 +3,6 @@
 		<Require feature="rpc" />
 		<Require feature="dynamic-height" />
 	</ModulePrefs>
-    <UserPref name="title" display_name="Title" required="true" />
 	<Content type="html">
   <![CDATA[
   <script type="text/javascript"
