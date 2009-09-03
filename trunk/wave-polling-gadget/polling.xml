@@ -118,12 +118,14 @@
 	  }
     }
     function addVote(option){
+      
       var optionValue = getValidOptionValue(option);
       if(optionValue!=null){
          optionValue.count++;
          optionValue.participants.push(viewer.getViewer().getId());
          var state = wave.getState();
 	     var delta = { };
+	     log(JSON.stringify(optionValue));
 	     delta[option] = JSON.stringify(optionValue);
          wave.getState().submitDelta(delta);
       }
@@ -139,6 +141,7 @@
          var state = wave.getState();
 	     var delta = { };
 	     delta[option] = JSON.stringify(optionValue);
+	     log(JSON.stringify(optionValue));
          wave.getState().submitDelta(delta);
       }
       gadgets.window.adjustHeight();
