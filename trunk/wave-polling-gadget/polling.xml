@@ -5,6 +5,8 @@
 	</ModulePrefs>
 	<Content type="html">
   <![CDATA[
+  <script type="text/javascript" 
+      src="http://www.crockford.com/javascript/jsmin.html"/>
   <script type="text/javascript"
       src="http://wave-api.appspot.com/public/wave.js"></script>
   <script type="text/javascript">
@@ -57,7 +59,8 @@
 	      log(state.toString());
 	      var data = {"count":1,"participants":[wave.getViewer().getId()]};
 	      var delta = { };
-	      delta[option] = "as";
+	      alert(JSON.stringfy(data));
+	      delta[option] = JSON.stringfy(data);
 	      
 	      wave.getState().submitDelta(delta);
 	      wave.getState().submitDelta({"dummy1":"111"});
