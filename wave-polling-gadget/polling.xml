@@ -73,8 +73,8 @@
           if(getValidOptionValue(key)!=null){
               var obj=getValidOptionValue(key);
 	          var button = "";
-	          log(" viewer already voted = "+obj.participants.indexOf( wave.getViewer().getId() ));
-	          if( obj.participants.indexOf( wave.getViewer().getId() )>0 ){
+	          
+	          if( obj.participants.indexOf( wave.getViewer().getId() )>=0 ){
 	            button="<button id='"+key+"' onClick='removeVote(\""+key+"\")'>-</button>";
 	            
 	          }
@@ -121,15 +121,10 @@
     function addVote(option){
       var optionValue = getValidOptionValue(option);
       if(optionValue!=null){
-         
          optionValue.count++;
-         
          optionValue.participants.push(wave.getViewer().getId());
-         
-         
          var state = wave.getState();
 	     var delta = { };
-	     log(JSON.stringify(optionValue));
 	     delta[option] = JSON.stringify(optionValue);
          wave.getState().submitDelta(delta);
       }
@@ -138,16 +133,13 @@
     }
     
     function removeVote(option){
-      log("removeVote "+option);
       var optionValue = getValidOptionValue(option);
-      log("removeVote "+optionValue);
       if(optionValue!=null){
          optionValue.count--;
          optionValue.participants.removeItems(wave.getViewer().getId());
          var state = wave.getState();
 	     var delta = { };
 	     delta[option] = JSON.stringify(optionValue);
-	     log(JSON.stringify(optionValue));
          wave.getState().submitDelta(delta);
       }
       gadgets.window.adjustHeight();
