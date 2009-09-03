@@ -44,7 +44,8 @@
       log("submitted");
       
     }
-    function addOption(option){
+    function addOption(id){
+      log("id="+id);
       var option = value(id);
       log("option="+option);
       var state = wave.getState();
@@ -80,12 +81,8 @@
     
     function setup(){
 	  hide("owner");      
-      hide("participant");
       if(wave.getViewer().getId()==wave.getHost().getId()){
          show("owner");
-      }
-      else{
-         show("participant");
       }
     }
 
@@ -109,6 +106,10 @@
   </script>
   <div id="log" style="border:1px dotted red">
   </div>
+  <div id="participant" style="display:none">
+     <h1 id="title"></h1>
+  </div>
+  
   <div id="owner" style="display:none">
      <table>
        <tr>
@@ -117,9 +118,6 @@
          <td><button id="titleSubmit" name="Set" value="Set" onClick="setPollTitle('titleInput')">Set</button></td>
        </tr>
       </table>
-  </div>
-  <div id="participant" style="display:none">
-     <h1 id="title"></h1>
   </div>
   <div>
      <table>
