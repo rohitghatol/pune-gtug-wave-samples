@@ -37,7 +37,9 @@
       //TODO Set value in state
       var title = value(id);
       var state = wave.getState();
+      log(state);
       var delta = {TITLE:title};
+      log(delta);
       state.submitDelta(delta);
       
     }
