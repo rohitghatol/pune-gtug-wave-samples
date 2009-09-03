@@ -46,6 +46,7 @@
       var contents="";
       for(var key in keys){
           var value = state.get(key);
+          alert("value="+value);
           var obj = JSON.parse(value);
           if(obj.count!=null){
              contents=contents+"<tr><td>"+key+"</td><td>place holder for bar</td><td><button id='"+key+"'>+</button></td></tr>";
