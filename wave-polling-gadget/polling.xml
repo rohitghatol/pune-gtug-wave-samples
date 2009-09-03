@@ -48,7 +48,7 @@
       var option = value(id);
       log("option="+option);
       var state = wave.getState();
-      var delta = {option:{count:1,participants:[wave.getViewer().getId()]};
+      var delta = {option:{count:1,participants:[wave.getViewer().getId()]}};
       log("state="+state);
       wave.getState().submitDelta(delta);
     }
