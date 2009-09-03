@@ -40,12 +40,14 @@
          } 
     }
     function renderPollResult(){
+      log("inside renderPollResult");
       var state = wave.getState();
       var keys = state.getKeys();
       var pollTable = elem("pollResults");
       var contents="";
       for(var key in keys){
           var value = state.get(key);
+          log("value="+value);
           if(value!=null){
 	          alert("value="+value);
 	          var obj = JSON.parse(value);
