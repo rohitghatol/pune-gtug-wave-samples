@@ -59,8 +59,8 @@
 	      log(state.toString());
 	      var data = {"count":1,"participants":[wave.getViewer().getId()]};
 	      var delta = { };
-	      alert(JSON.stringfy(data));
-	      delta[option] = JSON.stringfy(data);
+	      alert(JSON.stringify(data));
+	      delta[option] = JSON.stringify(data);
 	      
 	      wave.getState().submitDelta(delta);
 	      wave.getState().submitDelta({"dummy1":"111"});
