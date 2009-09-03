@@ -55,6 +55,9 @@
               var obj =null;
               try{
 	          	obj = JSON.parse(value);
+	          	if(obj.count ==null){
+	          	   validObject=false;
+	          	}
 	          }
 	          catch(e){
 	             validObject=false;
