@@ -124,7 +124,7 @@
        <tr>
          <td>Add Option:</td>
          <td><input id="addOptionInput" type="text" value=""></input></td>
-         <td><button id="addOptionSubmit" name="addOption" value="addOption" onClick="addOption(id('titleInput'))">Set</button></td>
+         <td><button id="addOptionSubmit" name="addOption" value="addOption" onClick="addOption('titleInput')">Set</button></td>
        </tr>
       </table>
   </div>
