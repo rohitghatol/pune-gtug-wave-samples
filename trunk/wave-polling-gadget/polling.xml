@@ -32,6 +32,7 @@
        	   alert(e);
        }
        gadgets.window.adjustHeight();
+       log("renderInfo done");
     }
     
     
