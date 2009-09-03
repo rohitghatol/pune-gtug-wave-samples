@@ -49,36 +49,50 @@
       var contents="";
       for(var index=0;index<keys.length;index++){
           var key = keys[index];
-          var value = state.get(key);
-          if(value!=null){
-              var validObject=true;
-              var obj =null;
-              try{
-	          	obj = JSON.parse(value);
-	          	if(obj.count ==null){
-	          	   validObject=false;
-	          	}
+          if(getValidOptionValue(key)!=null){
+              var obj=getValidOptionValue(key);
+	          var button = "";
+	          if( obj.participants.indexOf( wave.getViewer().getId() )>0 ){
+	            button="<button id='"+key+"' onClick='removeVote("+key+")'>-</button>";
 	          }
-	          catch(e){
-	             validObject=false;
+	          else{
+	            button="<button id='"+key+"' onClick='addVote("+key+")'>+</button>";
 	          }
-	          
-	          if(validObject){
-	             var button = "";
-	             alert(obj.participants[0]);
-	             alert(obj.participants.indexOf( wave.getViewer().getId() ));
-	             if( obj.participants.indexOf( wave.getViewer().getId() )>0 ){
-	               button="<button id='"+key+"' onClick='removeVote("+key+")'>-</button>";
-	             }
-	             else{
-	               button="<button id='"+key+"' onClick='addVote("+key+")'>+</button>";
-	             }
-	             contents=contents+"<tr><td>"+key+"</td><td> Polls="+obj.count+"</td><td>"+button+"</td></tr>";
-	          }
+	          contents=contents+"<tr><td>"+key+"</td><td> Polls="+obj.count+"</td><td>"+button+"</td></tr>";
           }
       }
       pollTable.innerHTML=contents;
-    }    
+    }  
+    
+    function getValidOptionValue(key){
+      var value = state.get(key);
+      if(value!=null){
+    	var validObject=true;
+        var obj =null;
+        try{
+	      obj = JSON.parse(value);
+	      if(obj.count ==null){
+	        validObject=false;
+	      }
+	    }
+	    catch(e){
+	    validObject=false;
+	    }
+	  }
+	  else{
+	    return null;
+	  }
+    }
+    function addVote(option){
+      alert("add vote for "+option);
+      gadgets.window.adjustHeight();
+    
+    }
+    
+    function removeVote(option){
+    
+    }
+      
     function setPollTitle(id){
       var title = value(id);
       if(title==null){
