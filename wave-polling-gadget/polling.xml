@@ -42,6 +42,12 @@
 	      var state = wave.getState();
 	      var delta = {};
 	      delta[TITLE]=title;
+	      for(var i in delta){
+	        alert(i+"="+delta[i]);
+	        for(var j in delta[i]){
+	          alert("   "+j+"="+delta[i][j]);
+	        }
+	      }
 	      wave.getState().submitDelta(delta);
 	  }
       gadgets.window.adjustHeight();
