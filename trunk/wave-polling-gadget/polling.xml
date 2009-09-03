@@ -65,7 +65,7 @@
 	          
 	          
 	          if(validObject){
-	             contents=contents+"<tr><td>"+key+"</td><td>place holder for bar</td><td><button id='"+key+"'>+</button></td></tr>";
+	             contents=contents+"<tr><td>"+key+"</td><td> Polls="+obj.count+"</td><td><button id='"+key+"'>+</button></td></tr>";
 	          }
           }
       }
