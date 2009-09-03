@@ -589,13 +589,8 @@ outer:          while (next()) {
                 default:
 
                     return ch >= '0' && ch <= '9' ? number() : word();
-
             }
-
         }
-
-
-
         return value();
 
     }
