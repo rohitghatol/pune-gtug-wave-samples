@@ -59,9 +59,7 @@
     }
     
     function setup(){
-      alert(wave.getViewer.getId());
-      alert(wave.getHost().getId());
-      if(wave.getViewer.getId()==wave.getHost().getId(){
+      if(wave.getViewer().getId()==wave.getHost().getId(){
          show("owner");
       }
       else{
