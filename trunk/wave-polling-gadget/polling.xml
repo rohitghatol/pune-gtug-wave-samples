@@ -51,8 +51,9 @@
           if(value!=null){
 
 	          var obj = JSON.parse(value);
-	          alert(obj);
-	          alert(obj.count);
+	          for(var i in obj){
+	            alert(i+"="+obj[i]);
+	          }
 	          if(obj.count!=null){
 	             contents=contents+"<tr><td>"+key+"</td><td>place holder for bar</td><td><button id='"+key+"'>+</button></td></tr>";
 	          }
