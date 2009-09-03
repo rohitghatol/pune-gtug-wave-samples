@@ -35,13 +35,9 @@
     
     function setPollTitle(id){
       //TODO Set value in state
-      log("inside setPollTitle");
-      log(id);
       var title = value(id);
-      log(value);
       var state = wave.getState();
-      log(state);
-      var detla = {TITLE:title};
+      var detla = {"title":title};
       log(delta);
       state.submitDelta(delta);
       
@@ -64,11 +60,15 @@
     }
     function value(id){
       if(document.getElementById(id)!=null)
-      return document.getElementById(id).value;
+        return document.getElementById(id).value;
+      else
+        null;
     }
     function text(id,text){
       if(document.getElementById(id)!=null)
-      return document.getElementById(id).innerHTML=text;
+        return document.getElementById(id).innerHTML=text;
+      else
+        null;
     }
     
     function setup(){
