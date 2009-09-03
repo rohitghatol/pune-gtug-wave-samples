@@ -122,9 +122,12 @@
       if(optionValue!=null){
          
          optionValue.count++;
-         
+         try{
          optionValue.participants.push(viewer.getViewer().getId());
-         log(optionValue.participants.length);
+         }catch(e){
+           for(var i in e) alert(i+"="+e[i]);
+         }
+         
          var state = wave.getState();
 	     var delta = { };
 	     log(JSON.stringify(optionValue));
