@@ -24,7 +24,7 @@
          renderPollResult();
    
        }catch(e){
-       	   alert(e);
+       	   alert("Error="+e);
        }
        gadgets.window.adjustHeight();
        
