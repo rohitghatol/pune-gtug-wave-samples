@@ -46,7 +46,7 @@
       var pollTable = elem("pollResults");
       var contents="";
       for(var index=0;index<keys.length;index++){
-          var keyr = keys[index];
+          var key = keys[index];
           var value = state.get(key);
           log("key="+key +" value="+value);
           if(value!=null){
