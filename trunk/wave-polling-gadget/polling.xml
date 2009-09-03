@@ -35,7 +35,7 @@
     function setTitle(title){
       //TODO Set value in state
       var state = wave.getState();
-      state
+      state.submitDelta({TITLE:title});
       
     }
     function addOption(option){
@@ -58,6 +58,15 @@
       if(document.getElementById(id)!=null)
       return document.getElementById(id).innerHTML=text;
     }
+    
+    function setup(){
+      if(wave.getViewer.getId()==wave.getHost().getId(){
+         show("owner");
+      }
+      else{
+         show("participant");
+      }
+    }
 
     /** 
      * Called when Gadget is loaded.
@@ -66,6 +75,7 @@
      */
     function init() {
       if (wave && wave.isInWaveContainer()) {
+        setup();
         wave.setStateCallback(renderInfo);
         wave.setParticipantCallback(renderInfo);
       }
@@ -76,7 +86,16 @@
     
     
   </script>
-  <div>
+  <div id="owner" style="display:none">
+     <table>
+       <tr>
+         <td>Enter Polling Title :</td>
+         <td><input id="titleInput" type="text" value=""></input></td>
+         <td><button id="titleSubmit" name="Set" value="Set" onClick="setTitle(id('titleInput'))">Set</button></td>
+       </tr>
+      </table>
+  </div>
+  <div id="participant" style="display:none">
      <h1 id="title"></h1>
   </div>
   <div>
