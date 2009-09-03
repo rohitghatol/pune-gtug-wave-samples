@@ -54,12 +54,10 @@
       }
       else{
 	      var state = wave.getState();
-	      for(var i in state.getKeys()){
-	        alert(i+"="+state.getKeys()[i]);
-	      }
 	      var data = {"count":1,"participants":[wave.getViewer().getId()]};
 	      var delta = { };
 	      delta[option] = data;
+	      alert(data);
 	      wave.getState().submitDelta(delta);
 	  }
       gadgets.window.adjustHeight();
