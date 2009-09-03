@@ -8,6 +8,7 @@
   <script type="text/javascript"
       src="http://wave-api.appspot.com/public/wave.js"></script>
   <script type="text/javascript">
+    var DEBUG=true;
 	var TITLE="title";
 	
     function renderInfo(){
@@ -42,7 +43,7 @@
     }
 
     function log(text){
-       if(document.getElementById("log")!=null)
+       if(DEBUG && document.getElementById("log")!=null)
        document.getElementById("log").innerHTML=document.getElementById("log").innerHTML+"<br>"+text;
     }
     function show(id){
@@ -63,6 +64,10 @@
     }
     
     function setup(){
+      log("viewer = "+wave.getViewer());
+      log("viewer Id= "+wave.getViewer().getId());
+      log("host = "+wave.getHost());
+      log("host Id= "+wave.getHost().getId());
       if(wave.getViewer().getId()==wave.getHost().getId()){
          show("owner");
       }
