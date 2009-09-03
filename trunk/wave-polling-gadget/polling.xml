@@ -37,10 +37,10 @@
       //TODO Set value in state
       var title = value(id);
       var state = wave.getState();
-      log(state);
-      var delta = {TITLE:title};
-      log(delta);
-      state.submitDelta(delta);
+      log("state="+state);
+      var delta = {"title":title};
+      log("delta="+delta);
+      wave.getState().submitDelta(delta);
       
     }
     function addOption(option){
