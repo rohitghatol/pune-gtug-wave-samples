@@ -63,9 +63,15 @@
 	             validObject=false;
 	          }
 	          
-	          
 	          if(validObject){
-	             contents=contents+"<tr><td>"+key+"</td><td> Polls="+obj.count+"</td><td><button id='"+key+"'>+</button></td></tr>";
+	             var button = "";
+	             if(obj.participants.contains(wave.getViewer().getId()){
+	               button="<button id='"+key+"' onClick='removeVote("+key+")'>-</button>"
+	             }
+	             else{
+	               button="<button id='"+key+"' onClick='addVote("+key+")'>+</button>"
+	             }
+	             contents=contents+"<tr><td>"+key+"</td><td> Polls="+obj.count+"</td><td>"+button+"</td></tr>";
 	          }
           }
       }
