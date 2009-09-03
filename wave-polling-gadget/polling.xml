@@ -36,7 +36,7 @@
     function setPollTitle(id){
       //TODO Set value in state
       var title = value(id);
-      if(title=='undefined'){
+      if(title==null){
         alert("Please enter a Title for the polls?");
       }
       else{
@@ -54,7 +54,7 @@
       log("id="+id);
       var option = value(id);
       log("option="+option);
-      if(option=='undefined'){
+      if(option==null){
         alert("Please enter an Option for the polls?");
       }
       else{
