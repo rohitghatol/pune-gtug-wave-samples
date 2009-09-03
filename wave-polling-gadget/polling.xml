@@ -122,11 +122,9 @@
       if(optionValue!=null){
          
          optionValue.count++;
-         try{
-         optionValue.participants.push(viewer.getViewer().getId());
-         }catch(e){
-           for(var i in e) alert(i+"="+e[i]);
-         }
+         
+         optionValue.participants.push(wave.getViewer().getId());
+         
          
          var state = wave.getState();
 	     var delta = { };
@@ -144,7 +142,7 @@
       log("removeVote "+optionValue);
       if(optionValue!=null){
          optionValue.count--;
-         optionValue.participants.removeItems(viewer.getViewer().getId());
+         optionValue.participants.removeItems(wave.getViewer().getId());
          var state = wave.getState();
 	     var delta = { };
 	     delta[option] = JSON.stringify(optionValue);
