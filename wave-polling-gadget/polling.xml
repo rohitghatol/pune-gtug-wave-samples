@@ -64,10 +64,10 @@
     }
     
     function setup(){
-      log("viewer = "+wave.getViewer());
-      log("viewer Id= "+wave.getViewer().getId());
       log("host = "+wave.getHost());
       log("host Id= "+wave.getHost().getId());
+      log("viewer = "+wave.getViewer());
+      log("viewer Id= "+wave.getViewer().getId());
       if(wave.getViewer().getId()==wave.getHost().getId()){
          show("owner");
       }
