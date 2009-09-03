@@ -73,6 +73,7 @@
           if(getValidOptionValue(key)!=null){
               var obj=getValidOptionValue(key);
 	          var button = "";
+	          log(" viewer already voted = "+obj.participants.indexOf( wave.getViewer().getId() ));
 	          if( obj.participants.indexOf( wave.getViewer().getId() )>0 ){
 	            button="<button id='"+key+"' onClick='removeVote(\""+key+"\")'>-</button>";
 	            
