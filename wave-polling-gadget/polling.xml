@@ -1,0 +1,85 @@
+<Module>
+<ModulePrefs title="Polling" height="250">
+    <Require feature="rpc"/>
+    <Require feature="dynamic-height"/>
+  </ModulePrefs>
+
+  <Content type="html">
+  <![CDATA[
+  <script type="text/javascript"
+      src="http://wave-api.appspot.com/public/wave.js"></script>
+  <script type="text/javascript">
+	
+    function renderInfo(){
+  
+       try{
+         if (!wave.getState()) {
+           return;
+         }
+           
+   
+       }catch(e){
+       	   alert(e);
+       }
+       gadgets.window.adjustHeight();
+    }
+    
+    
+    function setTitle(title){
+      //TODO Set value in state
+    }
+    function addOption(option){
+      //TODO add Option on behalf of the viewer
+    }
+
+    function value(id){
+      return document.getElementById(id).value;
+    }
+
+    /** 
+     * Called when Gadget is loaded.
+     * Registers function renderInfo which will be called
+     * when ever a state is changed or a participant added
+     */
+    function init() {
+      if (wave && wave.isInWaveContainer()) {
+	  wave.setStateCallback(renderInfo);
+        wave.setParticipantCallback(renderInfo);
+      }
+    }
+
+    gadgets.util.registerOnLoadHandler(init);
+    
+    
+    
+  </script>
+  <div id="owner" style="display:none">
+     <table>
+       <tr>
+         <td>Enter Polling Title :</td>
+         <td><input id="titleInput" type="text" value=""></input></td>
+         <td><button id="titleSubmit" name="Set" value="Set" onClick="setTitle(id('titleInput'))">Set</button></td>
+       </tr>
+      </table>
+  </div>
+  <div id="participant" style="display:none">
+     <h1 id="title"></h1>
+  </div>
+  <div>
+     <table>
+       <tr>
+         <td>Add Option:</td>
+         <td><input id="addOptionInput" type="text" value=""></input></td>
+         <td><button id="addOptionSubmit" name="addOption" value="addOption" onClick="addOption(id('titleInput'))">Set</button></td>
+       </tr>
+      </table>
+  </div>
+  <div>
+    <h2>Poll Results</h2>
+    <table>
+      
+    </table>
+  </div>
+]]>
+</Content>
+</Module>
