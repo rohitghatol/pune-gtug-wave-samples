@@ -47,7 +47,7 @@
       var contents="";
       for(var key in keys){
           var value = state.get(key);
-          log("value="+value);
+          log("key="+key +" value="+value);
           if(value!=null){
 	          alert("value="+value);
 	          var obj = JSON.parse(value);
