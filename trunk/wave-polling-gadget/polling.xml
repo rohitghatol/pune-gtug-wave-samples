@@ -36,22 +36,34 @@
     function setPollTitle(id){
       //TODO Set value in state
       var title = value(id);
-      var state = wave.getState();
-      log("state="+state);
-      var delta = {"title":title};
-      log("delta="+delta);
-      wave.getState().submitDelta(delta);
-      log("submitted");
+      if(title=='undefined'){
+        alert("Please enter a Title for the polls?");
+      }
+      else{
+	      var state = wave.getState();
+	      log("state="+state);
+	      var delta = {"title":title};
+	      log("delta="+delta);
+	      wave.getState().submitDelta(delta);
+	      log("submitted");
+	  }
+      gadgets.window.adjustHeight();
       
     }
     function addOption(id){
       log("id="+id);
       var option = value(id);
       log("option="+option);
-      var state = wave.getState();
-      var delta = {option:{count:1,participants:[wave.getViewer().getId()]}};
-      log("state="+state);
-      wave.getState().submitDelta(delta);
+      if(option=='undefined'){
+        alert("Please enter an Option for the polls?");
+      }
+      else{
+	      var state = wave.getState();
+	      var delta = {option:{count:1,participants:[wave.getViewer().getId()]}};
+	      log("state="+state);
+	      wave.getState().submitDelta(delta);
+	  }
+      gadgets.window.adjustHeight();
     }
 
     function log(text){
@@ -124,7 +136,7 @@
        <tr>
          <td>Add Option:</td>
          <td><input id="addOptionInput" type="text" value=""></input></td>
-         <td><button id="addOptionSubmit" name="addOption" value="addOption" onClick="addOption('titleInput')">Set</button></td>
+         <td><button id="addOptionSubmit" name="addOption" value="addOption" onClick="addOption('addOptionInput')">Set</button></td>
        </tr>
       </table>
   </div>
