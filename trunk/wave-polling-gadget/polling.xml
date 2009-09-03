@@ -120,8 +120,9 @@
     function addVote(option){
       var optionValue = getValidOptionValue(option);
       if(optionValue!=null){
-         log(JSON.stringify(optionValue));
+         
          optionValue.count++;
+         log(optionValue.participants.push);
          optionValue.participants.push(viewer.getViewer().getId());
          var state = wave.getState();
 	     var delta = { };
