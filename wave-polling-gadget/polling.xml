@@ -51,12 +51,17 @@
           var key = keys[index];
           var value = state.get(key);
           if(value!=null){
-
-	          var obj = JSON.parse(value);
-	          for(var i in obj){
-	            alert(i+"="+obj[i]);
+              var validObject=true;
+              var obj =null;
+              try{
+	          	obj = JSON.parse(value);
 	          }
-	          if(obj.count!=null){
+	          catch(e){
+	             validObject=false;
+	          }
+	          
+	          
+	          if(validObject){
 	             contents=contents+"<tr><td>"+key+"</td><td>place holder for bar</td><td><button id='"+key+"'>+</button></td></tr>";
 	          }
           }
