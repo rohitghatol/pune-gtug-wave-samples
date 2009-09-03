@@ -106,7 +106,7 @@
   </script>
   <div id="log" style="border:1px dotted red">
   </div>
-  <div id="participant" style="display:none">
+  <div id="participant">
      <h1 id="title"></h1>
   </div>
   
