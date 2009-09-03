@@ -45,13 +45,10 @@
       var keys = state.getKeys();
       var pollTable = elem("pollResults");
       var contents="";
-      alert(keys);
-      alert(keys.length);
-      alert(keys[0]);
-      for(var key in keys){
-          var keyStr = keys[keyStr];
-          var value = state.get(keyStr);
-          log("key="+keyStr +" value="+value);
+      for(var index=0;index<keys.length;index++){
+          var keyr = keys[index];
+          var value = state.get(key);
+          log("key="+key +" value="+value);
           if(value!=null){
 	          alert("value="+value);
 	          var obj = JSON.parse(value);
