@@ -20,13 +20,8 @@
            return;
          }
          setup();
-         var state=wave.getState();
-         if(!state.get(TITLE)) {
-           text(TITLE,"Not set yet");
-         }
-         else {
-           text(TITLE,state.get(TITLE));
-         } 
+         renderTitle();
+         renderPollResult();
    
        }catch(e){
        	   alert(e);
@@ -35,7 +30,29 @@
        log("renderInfo done");
     }
     
-    
+    function renderTitle(){
+         var state=wave.getState();
+         if(!state.get(TITLE)) {
+           text(TITLE,"Not set yet");
+         }
+         else {
+           text(TITLE,state.get(TITLE));
+         } 
+    }
+    function renderPollResult(){
+      var state = wave.getState();
+      var keys = state.getKeys();
+      var pollTable = elem("pollResults");
+      var contents="";
+      for(var key in keys){
+          var value = state.get(key);
+          var obj = JSON.parse(value);
+          if(obj.count!=null){
+             contents=contents+"<tr><td>"+key+"</td><td>place holder for bar</td><td><button id='"+key+"'>+</button></td></tr>";
+          }
+      }
+      pollTable.innerHTML=contents;
+    }    
     function setPollTitle(id){
       var title = value(id);
       if(title==null){
@@ -58,13 +75,10 @@
       else{
 	      var state = wave.getState();
 	      log(state.toString());
-	      var data = {"count":1,"participants":[wave.getViewer().getId()]};
+	      var data = {"count":0,"participants":[]};
 	      var delta = { };
-	      alert(JSON.stringify(data));
 	      delta[option] = JSON.stringify(data);
-	      
 	      wave.getState().submitDelta(delta);
-	      wave.getState().submitDelta({"dummy1":"111"});
 	  }
       gadgets.window.adjustHeight();
     }
@@ -73,6 +87,7 @@
        if(DEBUG && document.getElementById("log")!=null)
        document.getElementById("log").innerHTML=document.getElementById("log").innerHTML+"<br>"+text;
     }
+    
     function show(id){
       if(document.getElementById(id)!=null)
       document.getElementById(id).style.display="block";
@@ -84,6 +99,12 @@
     function value(id){
       if(document.getElementById(id)!=null)
         return document.getElementById(id).value;
+      else
+        null;
+    }
+    function elem(id){
+      if(document.getElementById(id)!=null)
+        return document.getElementById(id);
       else
         null;
     }
@@ -145,7 +166,7 @@
   </div>
   <div>
     <h2>Poll Results</h2>
-    <table>
+    <table id="pollResults" width="100%">
       
     </table>
   </div>
