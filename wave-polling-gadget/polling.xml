@@ -118,8 +118,9 @@
 	  }
     }
     function addVote(option){
-      
+      log("addVote "+option);
       var optionValue = getValidOptionValue(option);
+      log("addVote "+optionValue);
       if(optionValue!=null){
          optionValue.count++;
          optionValue.participants.push(viewer.getViewer().getId());
@@ -134,7 +135,9 @@
     }
     
     function removeVote(option){
+      log("removeVote "+option);
       var optionValue = getValidOptionValue(option);
+      log("removeVote "+optionValue);
       if(optionValue!=null){
          optionValue.count--;
          optionValue.participants.removeItems(viewer.getViewer().getId());
