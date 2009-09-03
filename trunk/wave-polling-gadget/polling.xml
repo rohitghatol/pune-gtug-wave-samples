@@ -67,17 +67,27 @@
     function getValidOptionValue(key){
       var state = wave.getState();
       var value = state.get(key);
+      
       if(value!=null){
+      
     	var validObject=true;
         var obj =null;
         try{
 	      obj = JSON.parse(value);
 	      if(obj.count ==null){
 	        validObject=false;
+	     
 	      }
 	    }
 	    catch(e){
 	      validObject=false;
+	     
+	    }
+	    if(validObject){
+	      return obj;
+	    }
+	    else{
+	      return null;
 	    }
 	  }
 	  else{
