@@ -67,6 +67,7 @@
       var keys = state.getKeys();
       var pollTable = elem("pollResults");
       var contents="";
+      var total = wave.getParticipants().length();
       for(var index=0;index<keys.length;index++){
           var key = keys[index];
           if(getValidOptionValue(key)!=null){
@@ -81,7 +82,12 @@
 	            button="<button id='"+key+"' onClick='addVote(\""+key+"\")'>+</button>";
 	            
 	          }
-	          contents=contents+"<tr><td>"+key+"</td><td> Polls="+obj.count+"</td><td>"+button+"</td></tr>";
+	          
+	          var votes = obj.count;
+	          var votesWidth = (100 * votes)/total ; 
+	          var votesDiv = "<div style='background:red;height:30px;width:"+votesWidth+"%'>"+votes+"</div>";
+	          
+	          contents=contents+"<tr><td>"+key+"</td><td> "+votesDiv+"</td><td>"+button+"</td></tr>";
           }
       }
       pollTable.innerHTML=contents;
