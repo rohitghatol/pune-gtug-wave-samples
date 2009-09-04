@@ -277,13 +277,14 @@
     </table>
   </div>
   <hr>
-  <div style="height:100px">
+  <div style="height:100px" cellspacing="5">
   	<table>
   	  <tr>
   	  <td>
-      <image src="http://pune-gtug-wave-samples.googlecode.com/svn/trunk/wave-polling-gadget/cerebrum-software-logo.gif"></image>&nbsp;&nbsp;This Wave Gadget is presented by <a href="http://www.cerebrumsoftware.in">Cerebrum Software Labs</a>.
+      <image src="http://pune-gtug-wave-samples.googlecode.com/svn/trunk/wave-polling-gadget/cerebrum-software-logo.gif"></image>
       </td>
       <td>
+      This Wave Gadget is presented by <a href="http://www.cerebrumsoftware.in">Cerebrum Software Labs</a>.
       <br>
       For futher enquiry please contact <a href="mailto:info@cerebrumsoftware.in">info@cerebrumsoftware.in</a>.
       <br>
