@@ -97,7 +97,7 @@
 	          }
 	          var votesDiv = "<div style='background:"+color+";height:30px;width:"+votesWidth+"%'>"+votes+"</div>";
 	          
-	          contents=contents+"<tr><td width='30%'>"+key+"</td><td width='60%'> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+votesDiv+"</td><td width='10%'>"+button+"</td></tr>";
+	          contents=contents+"<tr height="34px"><td width='30%'>"+key+"</td><td width='60%'> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+votesDiv+"</td><td width='10%'>"+button+"</td></tr>";
           }
       }
       pollTable.innerHTML=contents;
