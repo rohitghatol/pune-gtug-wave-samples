@@ -84,10 +84,20 @@
 	          }
 	          
 	          var votes = obj.count;
-	          var votesWidth = (100 * votes)/total ; 
-	          var votesDiv = "<div style='background:red;height:30px;width:"+votesWidth+"%'>"+votes+"</div>";
+	          var votesWidth = (100 * votes)/total ;
+	          var color = null;
+	          if(votesWidth>66){
+	            color="green";
+	          }
+	          else if(votesWidth>33 && votesWidth<66){
+	            color="blue";
+	          }
+	          else {
+	            color="red";
+	          }
+	          var votesDiv = "<div style='background:"+color+";height:30px;width:"+votesWidth+"%'>"+votes+"</div>";
 	          
-	          contents=contents+"<tr><td>"+key+"</td><td> "+votesDiv+"</td><td>"+button+"</td></tr>";
+	          contents=contents+"<tr><td width='30%'>"+key+"</td><td width='60%'> "+votesDiv+"</td><td width='10%'>"+button+"</td></tr>";
           }
       }
       pollTable.innerHTML=contents;
