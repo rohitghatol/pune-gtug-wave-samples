@@ -67,7 +67,7 @@
       var keys = state.getKeys();
       var pollTable = elem("pollResults");
       var contents="";
-      var total = wave.getParticipants().length();
+      var total = wave.getParticipants().length;
       for(var index=0;index<keys.length;index++){
           var key = keys[index];
           if(getValidOptionValue(key)!=null){
