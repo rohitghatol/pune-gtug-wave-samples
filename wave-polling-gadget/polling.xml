@@ -272,7 +272,7 @@
   </div>
   <div>
     <h2>Poll Results</h2>
-    <table id="pollResults" width="100%">
+    <table id="pollResults" border="1" width="100%">
       
     </table>
   </div>
