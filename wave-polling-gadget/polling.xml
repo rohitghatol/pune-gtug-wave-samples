@@ -95,7 +95,7 @@
 	          else {
 	            color="red";
 	          }
-	          var votesDiv = "<div style='width:100%;border:1px solid black'><div style='background:"+color+";height:30px;width:"+votesWidth+"%'><div style='height:30px;margin-left:30px'>"+votes+"</div></div></div>";
+	          var votesDiv = "<div style='width:100%;border:1px solid black'><div style='background:"+color+";height:30px;width:"+votesWidth+"%'><div style='height:30px;margin-left:30px'>Received "+votes+" votes</div></div></div>";
 	          
 	          contents=contents+"<tr height='30px'><td width='20%'>"+key+"</td><td width='60%' style='color:white'> "+votesDiv+"</td><td width='20%'>"+button+"</td></tr>";
           }
