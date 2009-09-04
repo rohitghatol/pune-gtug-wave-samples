@@ -277,7 +277,7 @@
     </table>
   </div>
   <hr>
-  <div style="height:100px" cellspacing="5">
+  <div style="height:100px;background:#FFFFDD;" cellspacing="5">
   	<table>
   	  <tr>
   	  <td>
