@@ -276,6 +276,23 @@
       
     </table>
   </div>
+  <hr>
+  <div style="height:100px;background:#FFFFDD;" cellspacing="5">
+  	<table>
+  	  <tr>
+  	  <td>
+      <image width="200px" height="90px" src="http://pune-gtug-wave-samples.googlecode.com/svn/trunk/wave-polling-gadget/cerebrum-software-logo.gif"></image>
+      </td>
+      <td>
+      This Wave Gadget is presented by <a href="http://www.cerebrumsoftware.in">Cerebrum Software Labs</a>.     
+      For futher enquiry please contact <a href="mailto:info@cerebrumsoftware.in">info@cerebrumsoftware.in</a>.
+      <br>
+      Author: <a href="mailto:rohit@cerebrumsoftware.in">rohit@cerebrumsoftware.in</a>
+      </td>
+      </tr>
+    </table>
+       
+  </div>
 ]]>
 	</Content>
 </Module>
