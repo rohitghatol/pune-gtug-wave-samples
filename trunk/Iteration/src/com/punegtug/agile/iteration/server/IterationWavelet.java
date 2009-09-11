@@ -2,6 +2,7 @@
 package com.punegtug.agile.iteration.server;
 
 import com.google.wave.api.Blip;
+import com.google.wave.api.Gadget;
 import com.google.wave.api.RobotMessageBundle;
 import com.google.wave.api.StyleType;
 import com.google.wave.api.StyledText;
@@ -14,12 +15,15 @@ import com.google.wave.api.Wavelet;
  * @author scovitz@google.com (Seth Covitz)
  */
 public class IterationWavelet {
+  private static final String IterationGadgetURI = "http://i-mank.appspot.com/iteration/com.punegtug.agile.iteration.client.Iteration.gadget.xml";
 
   /**
    * A reference to the wavelet that received the event or represents the
    * poll.
    */
   private Wavelet wavelet;
+  
+  private RobotMessageBundle context = null;
   
   /**
    * The persistent state of the poll. 
@@ -36,6 +40,7 @@ public class IterationWavelet {
    */
   public IterationWavelet(RobotMessageBundle context) {
     this.wavelet = context.getWavelet();
+    this.context=context;
     this.metadata = new IterationMetadata(context);
     
     Blip rootBlip = wavelet.getRootBlip();
@@ -75,7 +80,12 @@ public class IterationWavelet {
     wavelet.setTitle(new StyledText("Iteration No:"+metadata.getIterationName() , StyleType.HEADING2));
 
     wavelet.getRootBlip().getDocument().setAnnotation("poll-wavelet", "");
-    
+	Gadget iterationGadget = new Gadget(IterationGadgetURI);
+	iterationGadget.setField("iterationNo", metadata.getIterationName());
+	iterationGadget.setField("startDate", metadata.getStartDate());
+	iterationGadget.setField("duration", metadata.getDuration());
+	iterationGadget.setField("members", metadata.getRecipients());
+	wavelet.getRootBlip().getDocument().appendElement(iterationGadget);
     metadata.saveMetadata(wavelet);
   }
 
@@ -85,11 +95,4 @@ public class IterationWavelet {
   public void handleEvents() {
   }
 
-  /**
-   * Submits the user's vote by writing the vote to the results wavelet's (aka
-   * Admin Wavelet) data document.
-   */
-  private void submitPoll() {
-
-  }
 }

@@ -48,8 +48,12 @@ public class Iteration extends Gadget<UserPreferences> implements NeedsWave,
 	}
 	
 	public void updateGadget(){
+		String IterationNo=wave.getState().get("iterationNo");
+		String startDate = wave.getState().get("startDate");
+		String duration = wave.getState().get("duration");
+		String members = wave.getState().get("members");
 		
-		RootPanel.get().add(new Label("Hi "+wave.getHost().getDisplayName()+", Gadget is working"));
+		RootPanel.get().add(new Label("Iteration :"+IterationNo));
 	}
 
 }

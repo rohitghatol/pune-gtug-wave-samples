@@ -8,13 +8,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Represents the persistent state of the poll stored in wave. This class
- * provides simple serialization/deserialization into a string. Data documents
- * can be arbitrary xml or string data.
- * 
- * @author scovitz@google.com (Seth Covitz)
- */
 public class IterationMetadata {
 
   // Delimeter and separator constants.
@@ -98,7 +91,6 @@ public class IterationMetadata {
         this.iterationName = items[0];
         this.startDate = items[1];
         this.duration = items[2];
-
         this.recipients = items[3];
 
       } catch(IndexOutOfBoundsException iobx) {
@@ -238,17 +230,7 @@ public class IterationMetadata {
   }
 
   
-  /**
-   * Constructs a string to identify the new poll wavelet id for a recipient.
-   * Writebacks are necessary as the wavelet isn't created until the operation
-   * is received by the RobotProxy server. In order to access a wavelet
-   * without an event having been generated, one will need the id. Hence a
-   * writeback mechanism is used as a notification of the newly created id once
-   * it is available.
-   * 
-   * @param recipient
-   * @return the key for the writeback id.
-   */
+
   public String getIterationWriteBackId(String recipient) {
 	  
     return NEWIDS_ITERATION_BLIP_PREFIX + recipient;
