@@ -85,17 +85,19 @@ public class Iteration extends Gadget<UserPreferences> implements NeedsWave,Need
 		RootPanel.get().add(tabPanel);
 		
 		VerticalPanel vPanel=new VerticalPanel();
-		vPanel.setHeight("100%");
+		vPanel.setHeight("600px");
 		Label IterationNoLabel = new Label("Iteration No:"+IterationNo);
 		Label startDateLabel = new Label("Start Date:"+startDate);
 		Label durationLabel = new Label("Duration:"+duration+" days");
 		Grid grid = new Grid(membersList.size()+1,iterationDuration+1);
+		grid.setWidth("100%");
 		grid.setHeight("100%");
+		grid.setBorderWidth(2);
 		grid.setWidget(0, 0, new Label("Features/Days"));
-		for(int index=1;index<iterationDuration+1;index++){
+		for(int index=1;index<grid.getColumnCount();index++){
 			grid.setWidget(0, index, new Label(String.valueOf(index)));
 		}
-		for(int index=1;index<membersList.size()+1;index++){
+		for(int index=1;index<grid.getRowCount();index++){
 			grid.setWidget(index, 0, new Label("Feature "+String.valueOf(index)));
 		}
 		
@@ -104,9 +106,9 @@ public class Iteration extends Gadget<UserPreferences> implements NeedsWave,Need
 		vPanel.add(durationLabel);
 		vPanel.add(grid);
 		tabPanel.add(vPanel, "Iteration Progress");
-		
+		tabPanel.selectTab(0);
 		if(wave.getHost().getId().equals(owner)){
-			
+			tabPanel.add(new Label("Settings"), "Settings");
 		}
 		
 		
