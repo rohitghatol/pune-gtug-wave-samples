@@ -85,8 +85,6 @@ public class AdminWavelet {
 
 	private void startIteration() {
 		log.warning("inside startIteration");
-		log.warning("inside startIteration metadata.getRecipientsAsList()="+metadata.getRecipientsAsList());
-		log.warning("inside startIteration metadata.getRecipientsAsList().size()="+metadata.getRecipientsAsList().size());
 		for (String recipient : metadata.getRecipientsAsList()) {
 			// Append domain of the poll creator if not specified.
 			if (!recipient.contains("@")) {
@@ -98,11 +96,10 @@ public class AdminWavelet {
 			participants.add(recipient);
 			participants.add(WAVEITERATION);
 
-			log.warning("creating iteration wavelet : participants="+participants+" metadata.getIterationWriteBackId(recipient)= "+metadata.getIterationWriteBackId(recipient));
+			log.warning("creating iteration wavelet : participants="+participants);
 			// Create the Iteration
 			IterationWavelet iteration = new IterationWavelet(context, context
-					.createWavelet(participants, metadata
-							.getIterationWriteBackId(recipient)));
+					.createWavelet(participants));
 			log.warning("created iteration wavelet");
 			iteration.create(wavelet, recipient);
 

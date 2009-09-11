@@ -17,8 +17,6 @@ public class IterationMetadata {
   private static final String METADATA_DOC = "iteration-metadata";
   private static final String METADATA_FIELD_SEP = "|";
   private static final String METADATA_FIELD_SEP_REGEX = "\\|";
-  private static final String METADATA_ID_SEP = "$";
-  private static final String METADATA_ID_SEP_REGEX = "\\$";
 
   private static final String NEWIDS_DOC = "_new_ids_";
   private static final String NEWIDS_ITERATION_BLIP_PREFIX = "iteration-blip-";
@@ -271,10 +269,6 @@ public class IterationMetadata {
   
   public void setPassword(String password){
 	  this.password=password;
-  }
-  public String getIterationWriteBackId(String recipient) {
-	  
-    return NEWIDS_ITERATION_BLIP_PREFIX + recipient;
   }
 
   

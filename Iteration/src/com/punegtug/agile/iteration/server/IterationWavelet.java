@@ -85,6 +85,8 @@ public class IterationWavelet {
 	iterationGadget.setField("startDate", metadata.getStartDate());
 	iterationGadget.setField("duration", metadata.getDuration());
 	iterationGadget.setField("members", metadata.getRecipients());
+	iterationGadget.setField("owner", metadata.getOwner());
+	
 	wavelet.getRootBlip().getDocument().appendElement(iterationGadget);
     metadata.saveMetadata(wavelet);
   }
