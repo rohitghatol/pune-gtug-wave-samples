@@ -36,6 +36,12 @@ public class IterationMetadata {
 
   private String recipients = "";
   
+  private String owner="";
+  
+  private String spreadsheetURL="";
+  private String userName = "";
+  private String password = "";
+  
   /**
    * A map of recipients to PollWavelets.
    */
@@ -127,6 +133,14 @@ public class IterationMetadata {
     newDataDocument.append(METADATA_FIELD_SEP);
     newDataDocument.append(recipients);
     newDataDocument.append(METADATA_FIELD_SEP);
+    newDataDocument.append(owner);
+    newDataDocument.append(METADATA_FIELD_SEP);
+    newDataDocument.append(spreadsheetURL);
+    newDataDocument.append(METADATA_FIELD_SEP);
+    newDataDocument.append(userName);
+    newDataDocument.append(METADATA_FIELD_SEP);
+    newDataDocument.append(password);
+    newDataDocument.append(METADATA_FIELD_SEP);
     
     if (!newDataDocument.toString().equals(dataDocument)) {
       wavelet.setDataDocument(METADATA_DOC, newDataDocument.toString());
@@ -185,7 +199,21 @@ public class IterationMetadata {
     return recipients;
   }
 
-
+  public String getOwner(){
+	  return owner;
+	  
+  }
+  
+  public String getSpreadSheetURL(){
+	  return spreadsheetURL;
+  }
+  
+  public String getUserName(){
+	  return userName;
+  }
+  public String getPassword(){
+	  return password;
+  }
   /**
    * Converts the comma separated list of recipients into a list.
    * 
@@ -229,8 +257,21 @@ public class IterationMetadata {
     hasChanged = true;
   }
 
-  
+  public void setOwner(String owner){
+	  this.owner=owner;
+	  hasChanged=true;
+  }
 
+  public void setSpreadSheetURL(String spreadsheetURL){
+	  this.spreadsheetURL=spreadsheetURL;
+  }
+  public void setUserName(String userName){
+	  this.userName=userName;
+  }
+  
+  public void setPassword(String password){
+	  this.password=password;
+  }
   public String getIterationWriteBackId(String recipient) {
 	  
     return NEWIDS_ITERATION_BLIP_PREFIX + recipient;
