@@ -23,6 +23,19 @@ public class AdminPane {
 	private static final String DURATION_INPUT = "duration_input";
 	private static final String DURATION_LABEL = "duration_label";
 
+	
+	private static final String OWNER_INPUT = "owner_input";
+	private static final String OWNER_LABEL = "owner_label";
+
+	private static final String SPREADSHEETURL_INPUT = "spreadsheeturl_input";
+	private static final String SPREADSHEETURL_LABEL = "spreadsheeturl_label";
+
+	private static final String USERNAME_INPUT = "username_input";
+	private static final String USERNAME_LABEL = "username_label";
+
+	private static final String PASSWORD_INPUT = "password_input";
+	private static final String PASSWORD_LABEL = "password_label";
+
 	private static final String ITERATION_INPUT = "iteration_input";
 	private static final String ITERATION_LABEL = "iteration_label";
 
@@ -38,8 +51,11 @@ public class AdminPane {
 	private String iterationName = null;
 	private String startDate = null;
 	private String duration = null;
-
-	private String recipients;
+	private String recipients =null;
+	private String owner = null;
+	private String spreadsheetURL=null;
+	private String userName=null;
+	private String password=null;
 
 	public AdminPane(Blip blip, IterationMetadata metadata) {
 		this.blip = blip;
@@ -89,6 +105,35 @@ public class AdminPane {
 		textView.appendElement(new FormElement(ElementType.INPUT,
 				RECIPIENTS_INPUT, metadata.getRecipients()));
 
+		
+		textView.appendElement(new FormElement(ElementType.LABEL,
+				OWNER_LABEL,
+				"Iteration Owner (one of the recepients):"));
+
+		textView.appendElement(new FormElement(ElementType.INPUT,
+				OWNER_INPUT, metadata.getOwner()));
+
+		textView.appendElement(new FormElement(ElementType.LABEL,
+				SPREADSHEETURL_LABEL,
+				"SpreadSheet URL where the iteration updates will be stored:"));
+
+		textView.appendElement(new FormElement(ElementType.INPUT,
+				SPREADSHEETURL_INPUT, metadata.getSpreadSheetURL()));
+
+		textView.appendElement(new FormElement(ElementType.LABEL,
+				USERNAME_LABEL,
+				"UserName required to access the spreadsheet:"));
+
+		textView.appendElement(new FormElement(ElementType.INPUT,
+				USERNAME_INPUT, metadata.getUserName()));
+		textView.appendElement(new FormElement(ElementType.LABEL,
+				PASSWORD_LABEL,
+				"Password required to access the spreadsheet:"));
+
+		textView.appendElement(new FormElement(ElementType.INPUT,
+				PASSWORD_INPUT, metadata.getPassword()));
+
+		
 		textView.append("\n");
 
 		textView.appendElement(new FormElement(ElementType.BUTTON,
@@ -109,20 +154,32 @@ public class AdminPane {
 	 */
 	private void parseBlip() {
 		try {
-			log.warning("inside parseBlip()");
+			
 			FormView formView = blip.getDocument().getFormView();
 			iterationName = formView.getFormElement(ITERATION_INPUT).getValue();
 			metadata.setIterationName(iterationName);
-			log.warning("inside parseBlip() iterationName="+iterationName);
+			
 			startDate = formView.getFormElement(STARTDATE_INPUT).getValue();
 			metadata.setStartDate(startDate);
-			log.warning("inside parseBlip() startDate="+startDate);
+			
 			duration = formView.getFormElement(DURATION_INPUT).getValue();
 			metadata.setDuration(duration);
-			log.warning("inside parseBlip() duration="+duration);
+			
 			recipients = formView.getFormElement(RECIPIENTS_INPUT).getValue();
 			metadata.setRecipients(recipients);
-			log.warning("inside parseBlip() recipients="+recipients);
+			
+			owner = formView.getFormElement(OWNER_INPUT).getValue();
+			metadata.setOwner(owner);
+			
+			spreadsheetURL = formView.getFormElement(SPREADSHEETURL_INPUT).getValue();
+			metadata.setSpreadSheetURL(spreadsheetURL);
+
+			userName = formView.getFormElement(USERNAME_INPUT).getValue();
+			metadata.setUserName(spreadsheetURL);
+
+			password = formView.getFormElement(PASSWORD_INPUT).getValue();
+			metadata.setPassword(password);
+			
 		} catch (NullPointerException npx) {
 			// Form will not be valid until it has been fully created
 			log.warning("inside parseBlip() "+npx);
