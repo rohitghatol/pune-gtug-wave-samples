@@ -4,13 +4,13 @@
   <w:capabilities>
     <w:capability name="wavelet_participants_changed"/>
     <w:capability name="document_changed"/>
-    <w:capability name="blip_submitted"/>    
+    <w:capability name="form_button_clicked" content="true" />
   </w:capabilities>
 
   <w:crons>
     <w:cron path="/_wave/robot/fetchupdate" timerinseconds="3600" />
   </w:crons>
 
-  <w:profile name="stocky" imageurl="/images/icon.png" profileurl="/_wave/profile.xml" />
+  <w:profile name="waveiteration" imageurl="/images/icon.png" profileurl="/_wave/profile.xml" />
 </w:robot>
 

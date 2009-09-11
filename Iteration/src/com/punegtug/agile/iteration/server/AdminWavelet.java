@@ -1,8 +1,8 @@
-
 package com.punegtug.agile.iteration.server;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import com.google.wave.api.Blip;
 import com.google.wave.api.RobotMessageBundle;
@@ -15,170 +15,98 @@ import com.google.wave.api.Wavelet;
  * @author rohitsghatol@gmail.com
  */
 public class AdminWavelet {
+	private static final Logger log = Logger.getLogger(AdminWavelet.class
+			.getName());
+	static final String WAVEITERATION = "i-mank@appspot.com";
 
-  /**
-   * WaveIterations' identity required for setting authorship for newly created
-   * polls.
-   */
-  static final String WAVEITERATION = "waveiteration@appspot.com";
+	private RobotMessageBundle context;
 
-  /**
-   * The robot context. This is only valid for one iteration of the robot's
-   * event processing loop and should not be cached or persisted.
-   */
-  private RobotMessageBundle context;
-  
-  /**
-   * A reference to the wavelet that received the event.
-   */
-  private Wavelet wavelet;
-  
-  /**
-   * The persistent state of the poll. 
-   */
-  private IterationMetadata metadata;
-  
-  /**
-   * A convenient wrapper to query/manipulate a virtual admin pane in the poll.
-   */
-  private AdminPane adminPane;
-  
-  
-  /**
-   * Determines whether the wavelet that received an event has been initialized
-   * by Polly as an Admin Wavelet.
-   * 
-   * @param context the context within which the robot is currently running.
-   * @return true if the wavelet is an admin wavelet, false otherwise.
-   */
-  public static boolean isAdminWavelet(RobotMessageBundle context) {
-    return isInitialized(context.getWavelet().getRootBlip());
-  }
+	private Wavelet wavelet;
 
-  /**
-   * Determines if a blip is part of an AdminWavelet by checking for the 
-   * presence of the 'poll-admin' annotation.
-   * 
-   * @param blip the blip to check.
-   * @return true if the blip is part of an admin wavelet, false otherwise.
-   */
-  private static boolean isInitialized(Blip blip) {
-    return blip.getDocument().hasAnnotation("iteration-admin");
-  }
-  
-  /**
-   * Constructs an AdminWavelet given the current robot context. 
-   * 
-   * @param context the context within which the robot is currently running.
-   */
-  public AdminWavelet(RobotMessageBundle context) {
-    this.context = context;
-    this.wavelet = context.getWavelet();
-    this.metadata = new IterationMetadata(context);
-    
-    Blip rootBlip = wavelet.getRootBlip();
-    this.adminPane = new AdminPane(rootBlip, metadata);
-  }
+	private IterationMetadata metadata;
 
-  /**
-   * A handler for AdminWavelet events.
-   */
-  public void handleEvents() {
-    // If the admin form builder has not been initialized, then initialize it.
-    if (!isInitialized(wavelet.getRootBlip())) {
-      create();
-    }
-    
-    // As the user builds the poll, update the preview.
-    if (adminPane.hasChanged()) {
-      syncPreview();
-    }
-    
-    // Distribute the poll when needed.
-    if (adminPane.isStartIterationButtonPressed()) {
-      startIteration();
-    }
-    
-    // Save metadata.
-    if (metadata.hasChanged()) {
-      metadata.saveMetadata();
-    }
-  }
+	private AdminPane adminPane;
 
-  /**
-   * Create the admin form builder for this form. The Admin form consists of
-   * three panes. The admin pane defines the question and possible answers.The
-   * preview pane shows the user how the form will look when distributed. The
-   * results pane shows the poll votes as they come in.
-   */
-  public void create() {
-    setTitle(metadata.getIterationName());
-    adminPane.create();
-  
-  }
+	public static boolean isAdminWavelet(RobotMessageBundle context) {
 
-  /**
-   * Sets the title of the wave using StyledText.
-   * 
-   * @param title the title of the wave.
-   */
-  private void setTitle(String title) {
-    wavelet.setTitle(new StyledText(title + " -- Administration", StyleType.HEADING2));
-  }
+		return isInitialized(context.getWavelet().getRootBlip());
+	}
 
-  /**
-   * Syncs the contents of the preview pane with anything that has changed in
-   * the admin pane. The results pane is also updated if new votes (or changed
-   * votes) have come in.
-   */
-  private void syncPreview() {
-    if (adminPane.hasIterationNameChanged()) {
-      setTitle(adminPane.getIterationName());
-      metadata.setIterationName(adminPane.getIterationName());
-    }
-    
-    if (adminPane.hasStartDateChanged()) {
+	private static boolean isInitialized(Blip blip) {
+		return blip.getDocument().hasAnnotation("iteration-admin");
+	}
 
-      metadata.setStartDate(adminPane.getStartDate());
-    }
-    
-    if (adminPane.haveDurationChanged()) {
+	public AdminWavelet(RobotMessageBundle context) {
+		log.warning(" inside AdminWavelet");
+		this.context = context;
+		this.wavelet = context.getWavelet();
+		this.metadata = new IterationMetadata(context);
 
-      metadata.setDuration(adminPane.getDuration());
-    }
-    
-    if (adminPane.haveRecipientsChanged()) {
-      metadata.setRecipients(adminPane.getRecipients());
-    }
-    
-  }
-  
-  /**
-   * Distributes the poll to all recipients. As a convenience, recipients
-   * specified without a domain are assumed to be in the same domain as the
-   * poll creator.
-   */
-  private void startIteration() {
-    for (String recipient : metadata.getRecipientsAsList()) {
-      // Append domain of the poll creator if not specified.
-      if (!recipient.contains("@")) {
-        String domain = wavelet.getCreator().split("@")[1];
-        recipient = recipient + "@" + domain;
-      }
-      
-      // Initial participant list for poll must include POLLY so that the poll
-      // events can be monitored.
-      List<String> participants = new ArrayList<String>();
-      participants.add(recipient);
-      participants.add(WAVEITERATION);
+		Blip rootBlip = wavelet.getRootBlip();
+		this.adminPane = new AdminPane(rootBlip, metadata);
+		log.warning(" ended AdminWavelet");
+	}
 
-      // Create the poll.
-      IterationWavelet iteration = new IterationWavelet(context, context.createWavelet(
-          participants, metadata.getIterationWriteBackId(recipient)));
-      iteration.create(wavelet, recipient);
-      
-     
-    }
-    
-  }
+	public void handleEvents() {
+		log.warning(" inside AdminWavelet handleEvents");
+		// If the admin form builder has not been initialized, then initialize
+		// it.
+		if (!isInitialized(wavelet.getRootBlip())) {
+			log.warning(" inside AdminWavelet handleEvents create()");
+			create();
+		}
+
+
+		// Distribute the poll when needed.
+		if (adminPane.isStartIterationButtonPressed()) {
+			log.warning(" inside AdminWavelet handleEvents startIteration()");
+			startIteration();
+		}
+
+		// Save metadata.
+		if (metadata.hasChanged()) {
+			log.warning(" inside AdminWavelet handleEvents metadata.saveMetaData()");
+			metadata.saveMetadata();
+		}
+		log.warning(" ended AdminWavelet handleEvents");
+	}
+
+	public void create() {
+		setTitle(metadata.getIterationName());
+		adminPane.create();
+
+	}
+
+	private void setTitle(String title) {
+		wavelet.setTitle(new StyledText(title + " -- Administration",
+				StyleType.HEADING2));
+	}
+
+
+	private void startIteration() {
+		log.warning("inside startIteration");
+		log.warning("inside startIteration metadata.getRecipientsAsList()="+metadata.getRecipientsAsList());
+		log.warning("inside startIteration metadata.getRecipientsAsList().size()="+metadata.getRecipientsAsList().size());
+		for (String recipient : metadata.getRecipientsAsList()) {
+			// Append domain of the poll creator if not specified.
+			if (!recipient.contains("@")) {
+				String domain = wavelet.getCreator().split("@")[1];
+				recipient = recipient + "@" + domain;
+			}
+
+			List<String> participants = new ArrayList<String>();
+			participants.add(recipient);
+			participants.add(WAVEITERATION);
+
+			log.warning("creating iteration wavelet : participants="+participants+" metadata.getIterationWriteBackId(recipient)= "+metadata.getIterationWriteBackId(recipient));
+			// Create the Iteration
+			IterationWavelet iteration = new IterationWavelet(context, context
+					.createWavelet(participants, metadata
+							.getIterationWriteBackId(recipient)));
+			log.warning("created iteration wavelet");
+			iteration.create(wavelet, recipient);
+
+		}
+
+	}
 }
