@@ -167,6 +167,7 @@ public class AdminPane {
 			
 			recipients = formView.getFormElement(RECIPIENTS_INPUT).getValue();
 			metadata.setRecipients(recipients);
+			log.warning("Setting recipients as "+recipients);
 			
 			owner = formView.getFormElement(OWNER_INPUT).getValue();
 			metadata.setOwner(owner);
