@@ -25,6 +25,9 @@ public class IterationServlet extends AbstractRobotServlet {
 	      adminWavelet.handleEvents();
 	      return;
 	    }
+	    if(IterationWavelet.isIterationWavelet(robotMessageBundle)){
+	    	log.warning("Got a Update on Iteration Wavelet "+robotMessageBundle.getEvents().size());
+	    }
 	    
 
 	}
